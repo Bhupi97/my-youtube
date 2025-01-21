@@ -1,9 +1,13 @@
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../utils/appSlice";
+import useMostPopularVideos from "../hooks/useMostPopularVideos";
+
+
 
 const Header = () => {
 
     const dispatch = useDispatch();
+    useMostPopularVideos();
 
     const handleToggleSidebar = () => {
         dispatch(toggleSidebar());
