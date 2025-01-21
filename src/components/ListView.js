@@ -12,7 +12,7 @@ const ListView = () => {
 
 
     return (
-        <div className="h-full my-4 w-2/5">
+        <div className="h-full my-4 w-72">
             {mostPopularVideos && 
             mostPopularVideos.map(video => <Link key={video.id} to={"/watch?v="+video.id}><HorizontalVideoCard info={video} /></Link>)}
             {/*  */}

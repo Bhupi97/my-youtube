@@ -6,7 +6,6 @@ import { addMostPopular } from "../utils/videosSlice";
 const useMostPopularVideos = () => {
 
     const dispatch = useDispatch();
-
     useEffect(() => {
         loadVideos();
         // console.log(videos);
