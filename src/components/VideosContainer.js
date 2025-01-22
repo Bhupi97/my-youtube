@@ -6,8 +6,6 @@ import { useSelector } from "react-redux";
 const VideosContainer = () => {
     
     const mostPopularVideos = useSelector(store => store.videos.mostPopular);
-
-    console.log(mostPopularVideos);
     
     return (
         <div className="flex flex-wrap">

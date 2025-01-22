@@ -10,7 +10,7 @@ const SideBar = () => {
     if (!isSidebarOpen) return null;
 
     return (
-        <div className="shadow-lg w-1/12 p-5 h-screen">
+        <div className="shadow-lg w-1/12 p-5 h-screen pt-20">
             <ul className="">
                 <Link to="/"><li>Home</li></Link>
                 <li>Shorts</li>

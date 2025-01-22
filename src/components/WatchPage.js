@@ -18,7 +18,7 @@ const WatchPage = () => {
     
 
   return (
-    <div className='pl-20 flex w-5/6'>
+    <div className='pl-20 flex w-5/6 pt-20'>
       <div>
       <iframe width="1020" height="620" className='rounded-2xl my-4' 
       src={"https://www.youtube.com/embed/"+ searchParams.get("v")  +"?si=4J6FKbkTaoUaOVo8"}

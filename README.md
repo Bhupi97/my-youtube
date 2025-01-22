@@ -71,4 +71,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 DEBOUNCING:-
-If we are typing very fast it skips some of the key events
+If we are typing very fast it skips some of the key events.
+If the difference of time between keypress is 200ms (if typing is slow then Multiple API calls)
+If the difference of time between keypress is 30ms (if typing is faster then less API calls)
+
+Performance:-
+Eg.
+    - Wind Cheater Men = 16 letter x 1000 = 16000
+    - with debouncing = 3 API calls x 1000 = 3000
+
+Debaouncing with 200ms
+- if difference between 2 key strokes is < 200ms - Do not Call API
+- If difference between 2 key strokes is > 200ms - Make API call
