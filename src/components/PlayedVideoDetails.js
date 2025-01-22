@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import useCurrentVideoComments from "../hooks/useCurrentVideoComments";
+import UserComments from "./UserComments";
 
 const PlayedVideoDetails = () => {
 
@@ -9,8 +10,8 @@ const PlayedVideoDetails = () => {
     const [searchParams] = useSearchParams();
     const [showDescription, setShowDescription] = useState(false);
     const videoId = searchParams.get("v");
-    console.log(videoId);
-    useCurrentVideoComments(videoId);
+    // console.log(videoId);
+    useCurrentVideoComments();
     
     if(!movies)  return;
     const movieDetails = movies.filter(movie => movie.id === videoId);
@@ -31,16 +32,16 @@ const PlayedVideoDetails = () => {
 
 
     return (
-        <div className="w-full">
+        <div>
             <h1 className="text-xl font-bold">{title}</h1>
             <div>{channelTitle}, Subscribe button----  👍 {likeCount}  Dislike button</div>
-            <div className="bg-gray-200 rounded-lg p-2 my-2">
+            <div className="bg-gray-200 rounded-lg p-2 my-2 w-[1020px]">
                 <span className="font-semibold">{viewCount} Views  {formattedDate}</span> 
                 {showDescription ? 
                     <pre className="text-wrap font-sans" onClick={handleShowDescription}>{description}</pre> 
                     : <pre className="text-wrap font-sans line-clamp-2" onClick={handleShowDescription}>{description}</pre>}
             </div>
-            {}
+            <UserComments />
         </div>
     )
 };

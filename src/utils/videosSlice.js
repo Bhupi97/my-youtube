@@ -5,17 +5,17 @@ const videosSlice = createSlice({
     name: "videoSlice",
     initialState: {
         mostPopular: null,
-        currentlyPlayed: null,
+        comments: null,
     },
     reducers: {
         addMostPopular: (state, action) => {
             state.mostPopular = action.payload;
         },
-        addCurrentlyPlayed: (state, action) => {
-            state.currentlyPlayed = action.payload;
+        addComments: (state, action) => {
+            state.comments = action.payload;
         },
     },
 });
 
-export const { addMostPopular, addCurrentlyPlayed } = videosSlice.actions; 
+export const { addMostPopular, addComments } = videosSlice.actions; 
 export default videosSlice.reducer;
