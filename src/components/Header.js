@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../utils/appSlice";
 import useMostPopularVideos from "../hooks/useMostPopularVideos";
 import { useEffect, useState } from "react";
-import { YOUTUBE_AUTOSUGGEST_API } from "../utils/constants";
+import { YOUTUBE_AUTOSUGGEST_API, YOUTUBE_SEARCH_API } from "../utils/constants";
 import { CacheResults } from "../utils/searchSlice";
 
 
@@ -12,11 +12,31 @@ const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [performSearch, setPerformSearch] = useState(null);
 
     const searchCache = useSelector(store=> store.search);
     
     const dispatch = useDispatch();
     useMostPopularVideos();
+
+
+    // console.log(performSearch);
+    useEffect(()=> {
+        console.log("Use Effect is called with query :" + performSearch);
+        if(performSearch) {
+            // Call searchAPI
+            searchKeyword();
+        }
+
+    }, [performSearch])
+
+    const searchKeyword = async () => {
+        console.log(YOUTUBE_SEARCH_API + performSearch + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+        const data = await fetch(YOUTUBE_SEARCH_API + performSearch + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
+        const json = await data.json();
+        console.log(json);
+
+    }
 
     useEffect(() => {
         // API Call for Autosuggestion
@@ -74,10 +94,10 @@ const Header = () => {
             value={searchQuery} 
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}/>
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}/>
             {showSuggestions && <div className="bg-white mt-12 fixed z-10 w-1/3 rounded-lg shadow-lg">
                 <ul>
-                    {suggestions.map(s => <li key={s} className="p-2 hover:bg-gray-100 font-semibold">{s}</li>)}
+                    {suggestions.map(s => <li key={s} className="p-2 hover:bg-gray-100 font-semibold cursor-pointer"  onClick={() => setPerformSearch(s)}>{s}</li>)}
                 </ul> 
             </div>}
            <button className="h-full w-2/12 bg-gray-200 rounded-r-2xl">🔍</button>

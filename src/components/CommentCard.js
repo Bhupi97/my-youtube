@@ -17,4 +17,28 @@ const CommentCard = ({commentInfo}) => {
   )
 }
 
+// For n level nesting in comments firstly call comment component with comment data
+// Then call comment component again with Comment.replies data
+//  Eg.
+// const Comment = ({ data }) => {
+  // const {name, text, replies} = dummyData;
+  // return (
+  // <div>
+  // Print UserImage, name, text, replies
+  // Closing divs)
+  // }
+// 
+
+// const CommentsList = ({ comments }) => {
+  // return comments.map((comment, index) => {
+    // <div>
+    // <Comment key={index} data={comment} />
+    // <div>
+      //  <CommentsList comments={comments.replies} />        Recursive call here
+    // </div>
+    // </div>
+    // })}
+
+
+
 export default CommentCard;

@@ -5,3 +5,5 @@ export const COMMENTS_API = "https://youtube.googleapis.com/youtube/v3/comments?
 export const COMMENTS_THREAD_API = "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=";
 
 export const YOUTUBE_AUTOSUGGEST_API = "https://corsproxy.io/?http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const YOUTUBE_SEARCH_API = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=";
