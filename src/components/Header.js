@@ -4,6 +4,8 @@ import useMostPopularVideos from "../hooks/useMostPopularVideos";
 import { useEffect, useState } from "react";
 import { YOUTUBE_AUTOSUGGEST_API, YOUTUBE_SEARCH_API } from "../utils/constants";
 import { CacheResults } from "../utils/searchSlice";
+import { addSearchResults } from "../utils/videosSlice";
+import { Link } from "react-router-dom";
 
 
 
@@ -34,8 +36,8 @@ const Header = () => {
         console.log(YOUTUBE_SEARCH_API + performSearch + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
         const data = await fetch(YOUTUBE_SEARCH_API + performSearch + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY);
         const json = await data.json();
-        console.log(json);
-
+        // console.log(json.items);
+        dispatch(addSearchResults(json.items));
     }
 
     useEffect(() => {
@@ -97,7 +99,7 @@ const Header = () => {
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}/>
             {showSuggestions && <div className="bg-white mt-12 fixed z-10 w-1/3 rounded-lg shadow-lg">
                 <ul>
-                    {suggestions.map(s => <li key={s} className="p-2 hover:bg-gray-100 font-semibold cursor-pointer"  onClick={() => setPerformSearch(s)}>{s}</li>)}
+                    {suggestions.map(s => <Link key={s} to={"/results?search_query=" + s}><li className="p-2 hover:bg-gray-100 font-semibold cursor-pointer"  onClick={() => setPerformSearch(s)}>{s}</li></Link>)}
                 </ul> 
             </div>}
            <button className="h-full w-2/12 bg-gray-200 rounded-r-2xl">🔍</button>

@@ -14,8 +14,11 @@ const videosSlice = createSlice({
         addComments: (state, action) => {
             state.comments = action.payload;
         },
+        addSearchResults: (state, action) => {
+            state.searchQueryResults = action.payload;
+        },
     },
 });
 
-export const { addMostPopular, addComments } = videosSlice.actions; 
+export const { addMostPopular, addComments, addSearchResults } = videosSlice.actions; 
 export default videosSlice.reducer;
