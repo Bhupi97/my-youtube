@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
+Reference Notes:-
 DEBOUNCING:-
 If we are typing very fast it skips some of the key events.
 If the difference of time between keypress is 200ms (if typing is slow then Multiple API calls)
@@ -83,3 +83,7 @@ Eg.
 Debaouncing with 200ms
 - if difference between 2 key strokes is < 200ms - Do not Call API
 - If difference between 2 key strokes is > 200ms - Make API call
+
+2 ways to Deal with live data:-
+- WebSocket -> Involves Handshake of UI(client) and server - No Regular Intervala  - Initial connection takes time - Can send data whenever want to - Live trading platforms
+- API Polling - UI <- Server - Data flow server to UI - Data flow is unidirectional - UI checks for data after sometime eg. 10 seconds -  Eg. Gmail check for new emails after 10 seconds, Eg. Cricbuzz, use setInterval in useEffect to implement it

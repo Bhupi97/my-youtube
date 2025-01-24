@@ -4,6 +4,7 @@ import { closeSidebar } from '../utils/appSlice';
 import { useSearchParams } from 'react-router-dom';
 import ListView from './ListView';
 import PlayedVideoDetails from './PlayedVideoDetails';
+import LiveChat from './LiveChat';
 
 const WatchPage = () => {
 
@@ -30,7 +31,8 @@ const WatchPage = () => {
       </iframe>
       <PlayedVideoDetails />
       </div>
-      <ListView />
+      <LiveChat />
+      {/* <ListView /> */}
     </div>
   )
 }
