@@ -3,7 +3,7 @@ const CategoryButton = ({name}) => {
 
     return (
         <div>
-            <button className="bg-gray-100 rounded-md p-2 m-2 font-semibold whitespace-nowrap">{name}</button>
+            <button className="bg-neutral-100 rounded-md p-2 m-2 font-semibold whitespace-nowrap">{name}</button>
         </div>
     )
 };

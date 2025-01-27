@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
 import useVideoCategories from "../hooks/useVideoCategories";
 import CategoryButton from "./CategoryButton";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const CategoriesList = () => {
 
-    const scrollContainerRef = useRef(null)
+    const scrollContainerRef = useRef(null);
+    const [isAtEnd, setIsAtEnd] = useState(false);
+    const [isAtStart, setIsAtStart] = useState(true);
 
 
     useVideoCategories();
@@ -14,14 +16,37 @@ const CategoriesList = () => {
     console.log(categories);
 
     const scrollToRight = () => {
-        if (scrollContainerRef.current) {
+
+      const container = scrollContainerRef.current;
+        if (container) {
           // Scroll the container to the right by 300px
-          scrollContainerRef.current.scrollBy({
+          const { scrollLeft, scrollWidth, clientWidth } = container;
+          if (scrollLeft + clientWidth >= scrollWidth) {
+            setIsAtEnd(true);
+          } else {
+          container.scrollBy({
             left: 300, // Adjust this value as needed
             behavior: "smooth", // Optional: smooth scrolling
-          });
+          });}
         }
       };
+
+    const scrollToLeft = () => {
+      const container = scrollContainerRef.current;
+
+      if(container) {
+        const { scrollLeft, scrollWidth, clientWidth } = container;
+        if (scrollLeft !== 0) {
+          setIsAtStart(false);
+        } else {
+        container.scrollBy({
+          left: -300, // Adjust this value as needed
+          behavior: "smooth", // Optional: smooth scrolling
+        });}
+
+      }
+
+    }
     // const { title, id, channelId } = categories?.snippet;
 
     // const categories = ["All", "Gaming", "Cricket", "News", "Comedy", "Shark Tank", "Sports", "Action", "Drama", "Popular", "Hindi", "Latest", "Trending", "Culture", "Roast", "Hip hop", "Podcasts", "Cookery", "Concerts"];
@@ -29,8 +54,15 @@ const CategoriesList = () => {
 
     return (
         <div  ref={scrollContainerRef} className="flex flex-nowrap overflow-x-scroll pt-20 max-w-[90%]">
+          <button 
+            className="flex justify-start items-start fixed w-40 p-2 my-2 font-semibold whitespace-nowrap bg-gradient-to-r
+             from-white to-transparent bg-opacity-100" onClick={scrollToLeft}>{'<'}</button>
             {categories.map(category => <CategoryButton key={category.id} name={category.snippet.title} />)}
-            <button className="flex justify-end fixed w-[20%] right-0 rounded-md p-2 m-2 font-semibold whitespace-nowrap bg-gradient-to-l from-white text-center" onClick={scrollToRight}>{'>'}</button>
+            {!isAtEnd && 
+            <button 
+            className="flex justify-end font-bold items-end fixed w-40 bg-gradient-to-l from-white to-transparent bg-opacity-100 right-0 p-2 m-2 whitespace-nowrap
+             " onClick={scrollToRight}>{'>'}</button>
+            }
         </div>
     )
 };
