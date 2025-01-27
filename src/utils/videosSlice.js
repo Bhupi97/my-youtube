@@ -6,6 +6,7 @@ const videosSlice = createSlice({
     initialState: {
         mostPopular: null,
         comments: null,
+        videoCategories: null,
     },
     reducers: {
         addMostPopular: (state, action) => {
@@ -17,8 +18,11 @@ const videosSlice = createSlice({
         addSearchResults: (state, action) => {
             state.searchQueryResults = action.payload;
         },
+        addCategories: (state, action) => {
+            state.videoCategories = action.payload;
+        }
     },
 });
 
-export const { addMostPopular, addComments, addSearchResults } = videosSlice.actions; 
+export const { addMostPopular, addComments, addSearchResults, addCategories } = videosSlice.actions; 
 export default videosSlice.reducer;

@@ -3,7 +3,7 @@ import VideosContainer from "./VideosContainer";
 
 const MainContainer = () => {
     return (
-        <div>
+        <div className="max-w-full">
             <CategoriesList />
             <VideosContainer />
         </div>
